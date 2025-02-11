@@ -7,8 +7,7 @@ class MovieController{
             if (data.status === 1) {
                 response.status(200).json({data: data.data})
             }else{
-                // next(data.error)
-                console.log(data.error)
+                next(data.error)
             }
         })
     }
@@ -17,8 +16,7 @@ class MovieController{
             if (data.status === 1) {
                 response.status(200).json({data: data.data})
             }else{
-                // next(data.error)
-                console.log(data.error)
+                next(data.error)
             }
         })
     }
@@ -27,7 +25,7 @@ class MovieController{
             if (data.status === 1) {
                 response.status(201).json({data: data.data})
             }else{
-                console.log(data.error)
+                next(data.error)
             }
         })
     }
@@ -36,7 +34,7 @@ class MovieController{
             if (data.status === 1) {
                 response.status(200).json({data: data.data})
             }else{
-                console.log(data.error)
+                next(data.error)
             }
         })
     }
@@ -45,7 +43,7 @@ class MovieController{
             if (data.status === 1) {
                 response.status(200).json({data: data.data})
             }else{
-                console.log(data.error)
+                next(data.error)
             }
         })
     }

@@ -13,9 +13,9 @@ const port = process.env.port || 4002
 
 connect((connect) => {
     if (connect) {
-        console.log('masuk')
+       console.log('we are in!')
     }else{
-        console.log(connect,'error')
+       console.log(connect,'error')
     }
 })
 
@@ -35,5 +35,5 @@ app.use('/', router)
 // app.use(errHandler)
 
 app.listen(port, () => {
-    console.log(`Server is listening on ${port}`)
+   console.log(`Server is listening on ${port}`)
 })

@@ -17,7 +17,6 @@ function InputForm(props) {
     const [poster_path, setPosterPath] = useState('')
     const {id} = useParams()
 
-    console.log(props,'ini type props')
 
     let type 
     if (props.keys === 'series') {
@@ -42,13 +41,9 @@ function InputForm(props) {
 
     let datas
     const {data, loading} = useQuery(getItems)
-    // console.log(data,'qury')
-    // console.log(id,'id')
     if(!loading){
-        console.log(data,'data')
         if (data) {
             if(data[type][0]) {
-                // console.log('masuk')
                 datas = data[type][0]
             } else{ 
                 datas = data[type]
@@ -58,7 +53,7 @@ function InputForm(props) {
 
 
     const insertItem = gql`
-      mutation Insert${type}($title: String!, $overview: String!, $popularity: Int!, $poster_path: String!, $tags: [String]!) {
+      mutation insert${type}($title: String!, $overview: String!, $popularity: Int!, $poster_path: String!, $tags: [String]!) {
         insert${type}(title: $title, overview: $overview, popularity: $popularity, poster_path: $poster_path, tags: $tags) {
           _id,
           title,
@@ -121,7 +116,7 @@ function InputForm(props) {
         event.preventDefault()
         let inputTags = tags.split(',')
         inputTags = inputTags.map(value => value.trim())
-        if(props.type === 'create'){
+        if(props.types === 'create'){
             insert({variables: {title, overview, popularity: Number(popularity), poster_path, tags: inputTags}})
             Swal.fire({
                 position: 'top-end',
