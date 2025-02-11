@@ -7,27 +7,29 @@ class MovieController{
             if (data.status === 1) {
                 response.status(200).json({data: data.data})
             }else{
-                // next(data.error)
-                console.log(data.error)
+                next(data.error)
             }
         })
     }
     static find(request, response, next) {
-        Movies.findOne(request.params.id,data => {
-            if (data.status === 1) {
-                response.status(200).json({data: data.data})
-            }else{
-                // next(data.error)
-                console.log(data.error)
-            }
-        })
+        try {
+            Movies.findOne(request.params.id,data => {
+                if (data.status === 1) {
+                    response.status(200).json({data: data.data})
+                }else{
+                    next(data.error)
+                }
+            })
+        } catch (err) {
+            response.status(400).json({error: err})
+        }
     }
     static create(request, response, next) {
         Movies.create(request.body,(data) => {
             if (data.status === 1) {
                 response.status(201).json({data: data.data})
             }else{
-                console.log(data.error)
+                next(data.error)
             }
         })
     }
@@ -36,7 +38,7 @@ class MovieController{
             if (data.status === 1) {
                 response.status(200).json({data: data.data})
             }else{
-                console.log(data.error)
+                next(data.error)
             }
         })
     }
@@ -45,7 +47,7 @@ class MovieController{
             if (data.status === 1) {
                 response.status(200).json({data: data.data})
             }else{
-                console.log(data.error)
+                next(data.error)
             }
         })
     }

@@ -49,7 +49,6 @@ function Home(props) {
   let itemData
       if (props.types === 'favorite') {
         itemData = Favorite
-        console.log(itemData)
       }else{
         itemData = data
       }
