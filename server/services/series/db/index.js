@@ -1,9 +1,10 @@
 const { MongoClient } = require('mongodb')
+require('dotenv').config()
 
 let database = null
 
 const connect = (callback) => {
-    const uri = 'mongodb://127.0.0.1:27017'
+    const uri = process.env.DATABASE_URI
 
     const client = new MongoClient(uri, {
         useNewUrlParser: true,
@@ -11,7 +12,7 @@ const connect = (callback) => {
     })
     client.connect()
         .then(_ => {
-            database = client.db('entertainme')
+            database = client.db(process.env.DATABASE_NAME)
             callback(true)
         })
         .catch(err => {

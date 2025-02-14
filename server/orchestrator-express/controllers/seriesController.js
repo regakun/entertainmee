@@ -1,7 +1,14 @@
+require('dotenv').config()
 const axios = require('axios')
-const baseUrl = 'http://localhost:4002/'
+const baseUrl = process.env.SERIES_SERVER
 const Redis = require('ioredis')
-const redis = new Redis()
+const redisConnection = {
+    port: process.env.REDIS_PORT,          // Redis port
+    host: process.env.REDIS_HOST,   // Redis host
+    family: process.env.REDIS_FAMILY,           // 4(IPv4) or 6(IPv6)
+    password: process.env.REDIS_PASSWORD
+}
+const redis = (process.env.IS_REDIS_DEFAULT) ? new Redis() : new Redis(redisConnection)
 
 class SeriesController{
 

@@ -12,6 +12,7 @@
   "dependencies": {
     "apollo-server": "^2.22.2",
     "axios": "^0.21.1",
+    "dotenv": "^16.4.7",
     "graphql": "^15.5.0",
     "ioredis": "^4.26.0",
     "nodemon": "^2.0.7"
