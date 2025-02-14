@@ -1,7 +1,14 @@
 const { ApolloServer, gql } = require('apollo-server');
+require('dotenv').config()
+const redisConnection = {
+  port: process.env.REDIS_PORT,          // Redis port
+  host: process.env.REDIS_HOST,   // Redis host
+  family: process.env.REDIS_FAMILY,           // 4(IPv4) or 6(IPv6)
+  password: process.env.REDIS_PASSWORD
+}
 const axios = require('axios')
-const Redis = require('ioredis')
-const redis = new Redis()
+const Redis = require('ioredis') 
+const redis = (process.env.IS_REDIS_DEFAULT) ? new Redis() : new Redis(redisConnection)
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
@@ -67,8 +74,8 @@ const typeDefs = gql`
   }
 `;
 
-const movieUrl = 'http://localhost:4001/movies'
-const seriesUrl = 'http://localhost:4002/series'
+const movieUrl = `${process.env.MOVIES_SERVER}/movies`
+const seriesUrl = `${process.env.SERIES_SERVER}/series`
 
 
 const resolvers = {
